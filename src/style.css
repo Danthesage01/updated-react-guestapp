@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;;
+  background-color :#34495E;
+  color: #fff;
+  line-height: 1.5; 
+}
+header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+.container{
+  max-width: 768px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.display-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  /* position: relative; */
+}
+.display-card.reverse {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.display-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.input-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+  padding: 40px 50px;
+  margin: 25px 0;
+}
+.input-card.reverse {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.input-card h2 {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: #121213;
+}
+
+.guest{
+  display: flex;
+  justify-content: space-between;
+}
+.guest-item{
+  padding-left: 20px;
+}
+.guest-delete,
+.guest-edit{
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding-right: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 8px 10px;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  margin: 25px 10px;
+}
+
+input:focus {
+  outline: none;
+}
+.btn {
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 19px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn-primary {
+  background-color: #2C3E50;
+}
+
+.btn-secondary {
+  background: #1976D2;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  color: #333;
+  cursor: auto;
+}
+
+.btn:disabled:hover {
+  transform: scale(1);
+  opacity: 1;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.message {
+  padding-top: 10px;
+  text-align: center;
+  color: red;
+}
+
+.about-link {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* FIX: Remove position: absolute to keep about icon at the bottom of the
+ * document */
+.about-link a {
+  color: #fff;
+  cursor: pointer;
+}
+
+.about-link a:hover {
+  color: #1976D2;
+}
+
+.about h1 {
+  margin-bottom: 20px;
+}
+
+.about p {
+  margin: 10px 0;
+}
+
+
+@media (min-width: 600px) {
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8px 10px;
+  }
+  
+  input {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 16px;
+    margin: 25px;
+  }
+  
+}

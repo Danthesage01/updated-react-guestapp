@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import {BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import GuestList from "./components/GuestList";
+import Header from "./components/Header";
+import GuestStats from "./components/GuestStats";
+import GuestForm from "./components/GuestForm";
+import { GuestProvider } from "./context/GuestContext";
+import AboutPage from "./pages/AboutPage";
+import AboutToLink from "./components/AboutToLink";
 
+// This is the Parent component where props is passed down
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+return (
+    <GuestProvider>
+    <Router>
+    <Header />
+    <div className="container">
+      <Routes>
+        <Route exact path="/" element={
+          <>
+        <GuestForm  />
+        <GuestStats />
+        <GuestList />
+          </>
+        }>
+      </Route>
+      <Route path="about" element={<AboutPage />} />
+      </Routes>
     </div>
-  );
+        <AboutToLink />
+    </Router>
+    </GuestProvider>
+  )
 }
 
 export default App;
