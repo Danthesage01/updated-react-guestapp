@@ -1,21 +1,40 @@
-import React, { createContext, useState } from 'react'
-import GuestListData from '../data/GuestListData'
-import {v4 as uuidv4} from "uuid"
+import React, { createContext, useState, useEffect } from 'react'
+
 
 const GuestContext = createContext()
 
 export function GuestProvider ( { children } ){
-const [guest, setGuest] = useState(GuestListData)
+const [guest, setGuest] = useState([])
+const [isLoading, setIsLoading] = useState(true)
 const [guestEdit, setGuestEdit] = useState({
   item: {},
   isEdit: false
 })
 
-// addGuest function
-function addGuest(newGuest){
-  newGuest.id = uuidv4()
-    setGuest([newGuest, ...guest])
+useEffect(()=>{
+  fetchGuest()
+  }, [])
+  
+  async function fetchGuest(){
+    const res = await fetch(`https://fake-serverme.herokuapp.com/guest`)
+    const data = await res.json()
+    setGuest(data)
+    setIsLoading(false)
   }
+  
+
+// addGuest function
+async function addGuest(newGuest){
+  const res = await fetch(`https://fake-serverme.herokuapp.com/guest`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newGuest)
+  })
+  const data = await res.json()
+    setGuest([data, ...guest])
+}
 // edit guest
 function editGuest(item){
   setGuestEdit({
@@ -24,27 +43,42 @@ function editGuest(item){
   })
 }
 
+
 // update guest
-function updateGuest(id, updatedItem){
-  setGuest(guest.map(item =>{ 
-    return item.id === id ? {...item, ...updatedItem }: item
-  }))
-  setGuestEdit({
-    item: {},
-    isEdit: false
+async function updateGuest(id, updatedItem){
+  const res = await fetch(`https://fake-serverme.herokuapp.com/guest/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedItem)
   })
-}
+ 
+  const data = await res.json()
+   setGuest(guest.map(item =>{ 
+     return item.id === id ? data : item
+   }))
+   setGuestEdit({
+     item: {},
+     isEdit: false
+   })
+ }
+
 // deleteGuest function
-function deleteGuest(id){
-  if(window.confirm("Are you sure?")){
+async function deleteGuest(id){
+  if(window.confirm("Ready to delete permanently?")){
+    await fetch(`https://fake-serverme.herokuapp.com/guest/${id}`, {
+      method: "DELETE"
+    })
+
    setGuest(guest=> guest.filter(item => item.id !== id))
   }
 }
-  
 return (
   <GuestContext.Provider
   value={{
     guest,
+    isLoading,
     guestEdit,
     deleteGuest,
     addGuest,

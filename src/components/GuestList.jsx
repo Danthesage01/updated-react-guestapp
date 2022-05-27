@@ -1,12 +1,13 @@
 import React, {useContext} from "react"
 import GuestItem from "./GuestItem"
 import GuestContext from "../context/GuestContext"
+import Loader from "./shared/Loader"
 
 // Using Context instead of props from App 
 function GuestList( ) {
-const {guest } = useContext(GuestContext)
+const {guest, isLoading } = useContext(GuestContext)
 
-if(!guest || guest.length === 0 ){
+if(!isLoading && (!guest || guest.length === 0 )){
   return <h2>No Guest yet</h2>
 }
 
@@ -17,7 +18,8 @@ item = {item}
 /> 
 )
 
-  return (
+  return isLoading ? <Loader /> : 
+   (
     <div>
       {guestDetail}
     </div>
