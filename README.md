@@ -1,17 +1,15 @@
 # Updated Guest Application 
-Demo link: https://silly-paletas-800cd4.netlify.app/
+
+# Demo link: https://silly-paletas-800cd4.netlify.app/
 
 # Tools
-
-React, json-server
+JS, React, json-server
 
 The fake server was first hosted on github before hosting it on heroku
 
-# Fake-server link: 
-https://fake-serverme.herokuapp.com/
+# Fake-server link: https://fake-serverme.herokuapp.com/
 
-#Endpoint
-/guest
+# Endpoint:  /guest
 
 # app functions
 The mini guest-app performs all the CRUD http requests.
