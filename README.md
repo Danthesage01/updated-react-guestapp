@@ -1,6 +1,6 @@
 # Updated Guest Application 
 
-# Demo link: https://silly-paletas-800cd4.netlify.app/
+# Demo link: https://guest-app.netlify.app/
 
 # Tools
 JS, React, json-server
